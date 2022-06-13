@@ -1,58 +1,194 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div>
+    <div id="c1"></div>
+    <el-slider
+      v-model="theYear"
+      :min="1800"
+      :max="2019"
+      @change="this.countUp"
+    ></el-slider>
   </div>
 </template>
 
 <script>
+import { Chart } from "@antv/g2";
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
-</script>
+  mounted() {
+    this.initComponent();
+  },
+  data() {
+    return {
+      theYear: 1800,
+      chart: null,
+      years: [],
+      data: [],
+      colorsMap: {
+        "Europe & Central Asia": "#f49d37",
+        "East Asia & Pacific": "#f03838",
+        "South Asia": "#35d1d1",
+        "Middle East & North Africa": "#5be56b",
+        "Sub-Saharan Africa": "#4e7af0",
+        America: "#ebcc21",
+      },
+      count: 0,
+    };
+  },
+  methods: {
+    initComponent() {
+      fetch(
+        "https://raw.githubusercontent.com/antvis/G2/master/examples/data/life.json"
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          this.years = Object.keys(data);
+          this.data = data;
+          // console.log(this.years[0]);
+          this.countUp();
+        });
+    },
+    countUp() {
+      // let chart;
+      // const year = this.years[count];
+      const year = this.theYear;
+      if (this.count === 0) {
+        this.chart = new Chart({
+          container: "c1",
+          autoFit: true,
+          width: 600,
+          height: 400,
+        });
+        this.chart.data(this.data[year]);
+        // 图表框架
+        this.chart.scale({
+          life: {
+            min: 0,
+            max: 90,
+            tickInterval: 10,
+            alias: "Y",
+          },
+          income: {
+            type: "log",
+            max: 150000,
+            min: 100,
+            alias: "X",
+          },
+          country: {
+            key: true, // 自定义每条数据的 id
+          },
+          population: {
+            type: "pow",
+            base: 2,
+            alias: "Z",
+          },
+          continent: {
+            values: [
+              "East Asia & Pacific",
+              "South Asia",
+              "Sub-Saharan Africa",
+              "Middle East & North Africa",
+              "Europe & Central Asia",
+              "America",
+            ],
+          },
+        });
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
+        // 配置 tooltip
+        this.chart.tooltip({
+          // showMarkers: false,
+          title: "country",
+          // position: "left",
+        });
+
+        // 配置图例
+        // this.chart.legend(false)
+        this.chart.legend("population", false);
+        this.chart.legend("continent", {
+          flipPage: false,
+          position: "bottom-left",
+        });
+
+        // 坐标轴配置
+        this.chart.axis("life", {
+          title: {
+            style: {
+              fill: "#8C8C8C",
+              fontSize: 14,
+            },
+          },
+          line: {
+            style: {
+              stroke: "#D9D9D9",
+            },
+          },
+        });
+        this.chart.axis("income", {
+          title: {
+            style: {
+              fill: "#8C8C8C",
+              fontSize: 14,
+            },
+          },
+          grid: {
+            line: {
+              style: {
+                stroke: "#D9D9D9",
+              },
+            },
+          },
+        });
+
+        // 绘制散点图
+        this.chart
+          .point()
+          // .path()
+          .position("income*life")
+          .color("continent", (val) => this.colorsMap[val])
+          // .size("population", [1, 25])
+          .shape("circle")
+          .animate({
+            update: {
+              duration: 200,
+              easing: "easeLinear",
+            },
+          })
+          .tooltip("life*income*population")
+          .style({
+            stroke: "#000",
+          });
+
+        // 绘制标注文本
+        this.chart.annotation().text({
+          position: ["50%", "50%"],
+          content: year,
+          style: {
+            fontSize: 200,
+            fill: "#999",
+            textAlign: "center",
+            fillOpacity: 0.3,
+          },
+          top: false,
+          animate: false,
+        });
+        this.chart.render();
+      } else {
+        this.chart.annotation().clear(true);
+        this.chart.annotation().text({
+          position: ["50%", "50%"],
+          content: year,
+          style: {
+            fontSize: 200,
+            fill: "#999",
+            textAlign: "center",
+            fillOpacity: 0.3,
+          },
+          top: false,
+          animate: false,
+        });
+        this.chart.changeData(this.data[year]);
+      }
+
+      ++this.count;
+    },
+  },
+};
+</script>
