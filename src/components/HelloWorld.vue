@@ -1,17 +1,31 @@
 <template>
   <div>
     <div id="c1"></div>
-    <el-slider
-      v-model="theYear"
-      :min="1800"
-      :max="2019"
-      @change="this.countUp"
-    ></el-slider>
+    <div>
+      <el-slider
+        v-model="theYear"
+        :min="1800"
+        :max="2019"
+        @change="this.countUp"
+      ></el-slider>
+    </div>
+    <div>
+      <el-switch
+        v-model="start"
+        active-text="播放"
+        inactive-text="暂停"
+        @change="this.switch"
+      >
+      </el-switch>
+    </div>
   </div>
 </template>
 
 <script>
 import { Chart } from "@antv/g2";
+import country from "/static/json/test.json";
+// import location from "/static/json/loc.json";
+
 export default {
   mounted() {
     this.initComponent();
@@ -19,6 +33,7 @@ export default {
   data() {
     return {
       theYear: 1800,
+      start: false,
       chart: null,
       years: [],
       data: [],
@@ -30,27 +45,37 @@ export default {
         "Sub-Saharan Africa": "#4e7af0",
         America: "#ebcc21",
       },
-      count: 0,
+      // count: 0,
+      interval: [],
+      init: false,
     };
   },
   methods: {
     initComponent() {
-      fetch(
-        "https://raw.githubusercontent.com/antvis/G2/master/examples/data/life.json"
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          this.years = Object.keys(data);
-          this.data = data;
-          // console.log(this.years[0]);
-          this.countUp();
-        });
+      // 111
+      // console.log(typeof location);
+      this.years = Object.keys(country);
+      this.data = country;
+      this.countUp();
+      // 222
+      // fetch(
+      //   "https://raw.githubusercontent.com/antvis/G2/master/examples/data/life.json"
+      // )
+      //   .then((res) => res.json())
+      //   .then((data) => {
+      //     console.log(typeof data);
+      //     this.years = Object.keys(data);
+      //     this.data = data;
+      //     this.countUp();
+      //   });
     },
     countUp() {
       // let chart;
-      // const year = this.years[count];
+      // const year = this.years[this.count];
       const year = this.theYear;
-      if (this.count === 0) {
+      console.log(1, typeof this.data[year]);
+      if (!this.init) {
+        this.init = true;
         this.chart = new Chart({
           container: "c1",
           autoFit: true,
@@ -143,8 +168,8 @@ export default {
           // .path()
           .position("income*life")
           .color("continent", (val) => this.colorsMap[val])
-          // .size("population", [1, 25])
-          .shape("circle")
+          .size("population", [4, 25])
+          .shape("triangle")
           .animate({
             update: {
               duration: 200,
@@ -170,7 +195,9 @@ export default {
           animate: false,
         });
         this.chart.render();
-      } else {
+      } else if (this.theYear < 2020) {
+        console.log(123, this.data[year]);
+
         this.chart.annotation().clear(true);
         this.chart.annotation().text({
           position: ["50%", "50%"],
@@ -187,7 +214,20 @@ export default {
         this.chart.changeData(this.data[year]);
       }
 
-      ++this.count;
+      // ++this.count;
+    },
+    play() {
+      this.theYear++;
+      // console.log(this.theYear)
+      this.countUp();
+    },
+    switch() {
+      console.log(this.theYear, this.start);
+      if (this.start) {
+        this.interval = setInterval(this.play, 300);
+      } else {
+        clearInterval(this.interval);
+      }
     },
   },
 };

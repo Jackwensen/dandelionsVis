@@ -1,0 +1,1180 @@
+{
+   "113203": [
+      {
+         "x": 6479,
+         "y": 2891,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -175.0959648,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6354.5,
+         "y": 2968,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -14.2666542,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 5983,
+         "y": 2926,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113204": [
+      {
+         "x": 6479,
+         "y": 2797,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 175.8408102,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6370,
+         "y": 2903,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -11.2299768,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6080,
+         "y": 3125,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113205": [
+      {
+         "x": 6612,
+         "y": 2699,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -182.1433482,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6441,
+         "y": 3033,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -10.5424272,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6017,
+         "y": 3441,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113206": [
+      {
+         "x": 6652,
+         "y": 2699,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 173.9500488,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6494,
+         "y": 3152,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -11.4018642,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6014,
+         "y": 3709,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113207": [
+      {
+         "x": 6804,
+         "y": 2607,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 175.2678522,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6494,
+         "y": 3152,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -11.4018642,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6171,
+         "y": 3856,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113208": [
+      {
+         "x": 6652,
+         "y": 2607,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -183.1173768,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6494,
+         "y": 3152,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -10.7716104,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6276,
+         "y": 3856,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113209": [
+      {
+         "x": 6804,
+         "y": 2708,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 175.2105564,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6494,
+         "y": 3152,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -10.6570188,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6375,
+         "y": 3856,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113210": [
+      {
+         "x": 6879,
+         "y": 2804,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -183.919518,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6455,
+         "y": 3112,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -10.599723,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6512,
+         "y": 3514,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113211": [
+      {
+         "x": 6879,
+         "y": 2778,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -183.1173768,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6455,
+         "y": 3112,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -10.599723,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6748,
+         "y": 3146,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113212": [
+      {
+         "x": 6761,
+         "y": 2810,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -183.8049264,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6455,
+         "y": 3112,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -12.7196676,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6914,
+         "y": 3018,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113213": [
+      {
+         "x": 6761,
+         "y": 2810,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 176.0126976,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6455,
+         "y": 3119.5,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -12.7196676,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6886.333333,
+         "y": 3012.166667,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113214": [
+      {
+         "x": 6519,
+         "y": 2709,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 175.6689228,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6455,
+         "y": 3127,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -3.8961144,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6858.666667,
+         "y": 3006.333333,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113215": [
+      {
+         "x": 6256,
+         "y": 2560,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 174.6948942,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6481,
+         "y": 3127,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -26.642547,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6831,
+         "y": 3000.5,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113216": [
+      {
+         "x": 6256,
+         "y": 2560,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 174.2938236,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6548,
+         "y": 3082,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -37.1849742,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6803.333333,
+         "y": 2994.666667,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113217": [
+      {
+         "x": 6256,
+         "y": 2560,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 174.5803026,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6568,
+         "y": 3066,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -30.366774,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6775.666667,
+         "y": 2988.833333,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113218": [
+      {
+         "x": 6210,
+         "y": 2449,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 174.4084152,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6577,
+         "y": 3013.5,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -30.366774,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6748,
+         "y": 2983,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113219": [
+      {
+         "x": 6351,
+         "y": 2510,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 173.319795,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6586,
+         "y": 2961,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -26.4133638,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6758.3,
+         "y": 2969.9,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113220": [
+      {
+         "x": 6351,
+         "y": 2516,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 174.179232,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6592,
+         "y": 2843,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -24.6944898,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6768.6,
+         "y": 2956.8,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113221": [
+      {
+         "x": 6403.5,
+         "y": 2504,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 173.0906118,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6630,
+         "y": 2843,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -24.6944898,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6778.9,
+         "y": 2943.7,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113222": [
+      {
+         "x": 6377,
+         "y": 2437,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 173.606274,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6668,
+         "y": 2843,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -6.4171296,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6789.2,
+         "y": 2930.6,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113223": [
+      {
+         "x": 6377,
+         "y": 2571,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 172.746837,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6691,
+         "y": 2961,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 30.4813656,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6799.5,
+         "y": 2917.5,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113224": [
+      {
+         "x": 6430,
+         "y": 2648,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 171.8874,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6820,
+         "y": 2996,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -35.6952834,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6809.8,
+         "y": 2904.4,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113225": [
+      {
+         "x": 6401,
+         "y": 2648,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 172.460358,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6924,
+         "y": 2911,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -60.2178858,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6820.1,
+         "y": 2891.3,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113226": [
+      {
+         "x": 6475,
+         "y": 2585,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 172.0592874,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 7093,
+         "y": 2911,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -54.0872352,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6830.4,
+         "y": 2878.2,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113227": [
+      {
+         "x": 6554,
+         "y": 2686,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 173.4343866,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 7093,
+         "y": 2911,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -54.0872352,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6840.7,
+         "y": 2865.1,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113228": [
+      {
+         "x": 6685,
+         "y": 2686,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 172.3457664,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 7093,
+         "y": 2911,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -56.5509546,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6851,
+         "y": 2852,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113229": [
+      {
+         "x": 6716,
+         "y": 2496,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 172.5749496,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 7093,
+         "y": 2844,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -56.436363,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6861.3,
+         "y": 2838.9,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113230": [
+      {
+         "x": 6772,
+         "y": 2384,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 172.6322454,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6925,
+         "y": 2844,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -56.4936588,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6871.6,
+         "y": 2825.8,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113231": [
+      {
+         "x": 6913,
+         "y": 2323,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 162.3762972,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6878,
+         "y": 2765,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -56.2071798,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6881.9,
+         "y": 2812.7,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113232": [
+      {
+         "x": 6980,
+         "y": 2377,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 164.8973124,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6860.5,
+         "y": 2765,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -56.2071798,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6892.2,
+         "y": 2799.6,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ],
+   "113233": [
+      {
+         "x": 6994,
+         "y": 2377,
+         "tracker": "26675",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": 163.6368048,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "one"
+      },
+      {
+         "x": 6843,
+         "y": 2765,
+         "tracker": "26679",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -55.1758554,
+         "interpolated": 0,
+         "CI": "Callthedoctor",
+         "id": "two"
+      },
+      {
+         "x": 6902.5,
+         "y": 2786.5,
+         "tracker": "28166",
+         "session": "S2",
+         "phase": 1,
+         "quartiles": 4,
+         "rotation": -62.165943,
+         "interpolated": 1,
+         "CI": "Callthedoctor",
+         "id": "three"
+      }
+   ]
+}
