@@ -23,6 +23,7 @@
 
 <script>
 import { Chart } from "@antv/g2";
+import { registerShape } from "@antv/g2";
 // import country from "/static/json/test.json";
 import location from "/static/json/loc.json";
 
@@ -55,26 +56,14 @@ export default {
       // let loc = location.json();
       this.years = Object.keys(location);
       this.data = location;
+      this.register();
       this.countUp();
-      /**
-       * 222
-       */
-      // fetch(
-      //   "https://raw.githubusercontent.com/antvis/G2/master/examples/data/life.json"
-      // )
-      //   .then((res) => res.json())
-      //   .then((data) => {
-      //     console.log(typeof data);
-      //     this.years = Object.keys(data);
-      //     this.data = data;
-      //     this.countUp();
-      //   });
     },
     countUp() {
       // const year = this.years[this.count];
       const time = this.theTime;
       if (!this.init) {
-        console.log(456, this.data[time]);
+        // console.log(456, this.data[time]);
 
         this.init = true;
         this.chart = new Chart({
@@ -170,14 +159,14 @@ export default {
 
         // 绘制散点图
         this.chart
-          // .interval()
-          .point()
+          .interval()
+          // .point()
           // .path()
           .position("x*y")
           .color("tracker", (val) => this.colorsMap[val])
           // .size("population", [4, 25])
-          .size(3)
-          .shape("circle")
+          .size(40)
+          .shape("triangle")
           .animate({
             update: {
               duration: 200,
@@ -204,7 +193,7 @@ export default {
         });
         this.chart.render();
       } else if (this.theTime < 113233) {
-        console.log(123, this.data[time]);
+        // console.log(123, this.data[time]);
 
         this.chart.annotation().clear(true);
         this.chart.annotation().text({
@@ -228,12 +217,49 @@ export default {
       this.countUp();
     },
     switch() {
-      console.log(this.theTime, this.start);
+      // console.log(this.theTime, this.start);
       if (this.start) {
         this.interval = setInterval(this.play, 300);
       } else {
         clearInterval(this.interval);
       }
+    },
+    register() {
+      registerShape("interval", "triangle", {
+        // 1. 定义关键点
+        getPoints(cfg) {
+          console.log(123, cfg);
+
+          const x = cfg.x;
+          const y = cfg.y;
+          // const y0 = cfg.y0;
+          const width = cfg.size;
+          return [
+            { x: x - width, y: y + 0.08 },
+            { x: x, y: y },
+            { x: x - width, y: y - 0.08 },
+          ];
+        },
+        // 2. 绘制
+        draw(cfg, group) {
+          const points = this.parsePoints(cfg.points); // 将0-1空间的坐标转换为画布坐标
+          console.log(456, cfg.points);
+          console.log(789, cfg);
+
+          cfg.defaultStyle.fill = cfg.color;
+          const polygon = group.addShape("path", {
+            attrs: {
+              path: [
+                ["M", points[0].x, points[0].y],
+                ["L", points[1].x, points[1].y],
+                ["L", points[2].x, points[2].y],
+              ],
+              ...cfg.defaultStyle,
+            },
+          });
+          return polygon;
+        },
+      });
     },
   },
 };
