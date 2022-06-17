@@ -40,9 +40,9 @@ export default {
       years: [],
       data: [],
       colorsMap: {
-        26675: "#f49d37",
-        26679: "#f03838",
-        28166: "#35d1d1",
+        person1: "#f49d37",
+        person2: "#f03838",
+        person3: "#35d1d1",
       },
       interval: [],
     };
@@ -68,9 +68,9 @@ export default {
         this.init = true;
         this.chart = new Chart({
           container: "c1",
-          autoFit: true,
-          width: 600,
-          height: 400,
+          // autoFit: true,
+          width: 900,
+          height: 500,
         });
         this.chart.data(this.data[time]);
         // 图表框架
@@ -107,55 +107,56 @@ export default {
           quartiles: {
             type: "linear",
           },
-          tracker: {
-            values: ["26675", "26679", "28166"],
+          person: {
+            values: ["person1", "person2", "person3"],
           },
         });
 
         // 配置 tooltip
         this.chart.tooltip({
           // showMarkers: false,
-          title: "CI",
+          title: "person",
           position: "left",
         });
 
         // 配置图例
         // this.chart.legend(false)
         this.chart.legend("CI", false);
-        this.chart.legend("tracker", {
+        this.chart.legend("person", {
           // flipPage: false,
           position: "bottom-left",
         });
 
         // 坐标轴配置
-        this.chart.axis("x", {
-          title: {
-            style: {
-              fill: "#8C8C8C",
-              fontSize: 14,
-            },
-          },
-          line: {
-            style: {
-              stroke: "#D9D9D9",
-            },
-          },
-        });
-        this.chart.axis("y", {
-          title: {
-            style: {
-              fill: "#8C8C8C",
-              fontSize: 14,
-            },
-          },
-          grid: {
-            line: {
-              style: {
-                stroke: "#D9D9D9",
-              },
-            },
-          },
-        });
+        this.chart.axis(false);
+        // this.chart.axis("x", {
+        //   title: {
+        //     style: {
+        //       fill: "#8C8C8C",
+        //       fontSize: 14,
+        //     },
+        //   },
+        //   line: {
+        //     style: {
+        //       stroke: "#D9D9D9",
+        //     },
+        //   },
+        // });
+        // this.chart.axis("y", {
+        //   title: {
+        //     style: {
+        //       fill: "#8C8C8C",
+        //       fontSize: 14,
+        //     },
+        //   },
+        //   grid: {
+        //     line: {
+        //       style: {
+        //         stroke: "#D9D9D9",
+        //       },
+        //     },
+        //   },
+        // });
 
         // 绘制散点图
         this.chart
@@ -163,9 +164,9 @@ export default {
           // .point()
           // .path()
           .position("x*y")
-          .color("tracker", (val) => this.colorsMap[val])
+          .color("person", (val) => this.colorsMap[val])
           // .size("population", [4, 25])
-          .size(40)
+          .size(50)
           .shape("triangle")
           .animate({
             update: {
@@ -173,17 +174,23 @@ export default {
               easing: "easeLinear",
             },
           })
-          .tooltip("CI*session*phase*id")
+          .tooltip("CI*session*phase")
           .style({
             stroke: "#000",
           });
 
         // 绘制标注文本
+        this.chart.annotation().image({
+          // top: true,
+          start: ["min", "max"],
+          end: ["max", "min"],
+          src: "https://i.ibb.co/0rxGQMf/Floor-Plan-No-Medicine-Room5.jpg", //static/img/FloorPlanNoMedicineRoom5.jpg
+        });
         this.chart.annotation().text({
-          position: ["50%", "50%"],
+          position: ["5%", "10%"],
           content: time,
           style: {
-            fontSize: 200,
+            fontSize: 30,
             fill: "#999",
             textAlign: "center",
             fillOpacity: 0.3,
@@ -196,11 +203,17 @@ export default {
         // console.log(123, this.data[time]);
 
         this.chart.annotation().clear(true);
+        // this.chart.annotation().image({
+        //   // top: true,
+        //   start: ["min", "max"],
+        //   end: ["max", "min"],
+        //   src: "https://i.ibb.co/rHVwv6Z/Floor-Plan-No-Medicine-Room5.jpg", //static/img/FloorPlanNoMedicineRoom5.jpg
+        // });
         this.chart.annotation().text({
-          position: ["50%", "50%"],
+          position: ["5%", "10%"],
           content: time,
           style: {
-            fontSize: 200,
+            fontSize: 30,
             fill: "#999",
             textAlign: "center",
             fillOpacity: 0.3,
@@ -235,28 +248,51 @@ export default {
           // const y0 = cfg.y0;
           const width = cfg.size;
           return [
-            { x: x - width, y: y + 0.08 },
+            { x: x + width, y: y + 0.05 },
             { x: x, y: y },
-            { x: x - width, y: y - 0.08 },
+            { x: x + width, y: y - 0.05 },
           ];
         },
         // 2. 绘制
         draw(cfg, group) {
           const points = this.parsePoints(cfg.points); // 将0-1空间的坐标转换为画布坐标
-          console.log(456, cfg.points);
-          console.log(789, cfg);
+          // console.log(456, cfg.data.angle);
+          // cfg.data.angle = 0;
+          let cosT = Math.cos((cfg.data.angle * Math.PI) / 360);
+          let sinT = Math.sin((cfg.data.angle * Math.PI) / 360);
+
+          // let tanTheta1 = (tanTheta + 0.33) / (1 - 0.33 * tanTheta);
+          // let x1 = Math.sqrt(2775.25 / (1 + Math.pow(tanTheta1, 2)));
+          // let y1 = x1 * tanTheta1;
+
+          // let tanTheta2 = (tanTheta - 0.33) / (1 + 0.33 * tanTheta);
+          // let x2 = Math.sqrt(2775.25 / (1 + Math.pow(tanTheta2, 2)));
+          // let y2 = x2 * tanTheta1;
+          // console.log(999, points[1].x + x1, points[1].y + y1);
+          // console.log(points[1].x + x2, points[1].y + y2);
+          var dx0 = points[0].x - points[1].x,
+            dy0 = points[0].y - points[1].y,
+            dx2 = points[2].x - points[1].x,
+            dy2 = points[2].y - points[1].y;
+          console.log(dx0, dy0);
+          console.log(dx2, dy2);
+          var x0 = dx0 * cosT - dy0 * sinT + points[1].x,
+            y0 = dx0 * sinT + dy0 * cosT + points[1].y,
+            x2 = dx2 * cosT - dy2 * sinT + points[1].x,
+            y2 = dx2 * sinT + dy2 * cosT + points[1].y;
 
           cfg.defaultStyle.fill = cfg.color;
           const polygon = group.addShape("path", {
             attrs: {
               path: [
-                ["M", points[0].x, points[0].y],
+                ["M", x2, y2],
                 ["L", points[1].x, points[1].y],
-                ["L", points[2].x, points[2].y],
+                ["L", x0, y0],
               ],
               ...cfg.defaultStyle,
             },
           });
+          console.log(polygon.attrs.path);
           return polygon;
         },
       });
