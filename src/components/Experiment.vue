@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="c1"></div>
+    <div id="c1" :style="backgroundDiv" class="middle"></div>
     <div>
       <el-slider
         v-model="theTime"
@@ -24,7 +24,6 @@
 <script>
 import { Chart } from "@antv/g2";
 import { registerShape } from "@antv/g2";
-// import country from "/static/json/test.json";
 import location from "/static/json/loc.json";
 
 export default {
@@ -45,6 +44,9 @@ export default {
         person3: "#35d1d1",
       },
       interval: [],
+      backgroundDiv: {
+        backgroundImage: "url(" + require("/static/img/1200+520.jpg") + ")",
+      },
     };
   },
   methods: {
@@ -69,8 +71,8 @@ export default {
         this.chart = new Chart({
           container: "c1",
           // autoFit: true,
-          width: 900,
-          height: 500,
+          width: 1200,
+          height: 520,
         });
         this.chart.data(this.data[time]);
         // 图表框架
@@ -124,49 +126,20 @@ export default {
         this.chart.legend("CI", false);
         this.chart.legend("person", {
           // flipPage: false,
-          position: "bottom-left",
+          position: "left-top",
         });
 
         // 坐标轴配置
         this.chart.axis(false);
-        // this.chart.axis("x", {
-        //   title: {
-        //     style: {
-        //       fill: "#8C8C8C",
-        //       fontSize: 14,
-        //     },
-        //   },
-        //   line: {
-        //     style: {
-        //       stroke: "#D9D9D9",
-        //     },
-        //   },
-        // });
-        // this.chart.axis("y", {
-        //   title: {
-        //     style: {
-        //       fill: "#8C8C8C",
-        //       fontSize: 14,
-        //     },
-        //   },
-        //   grid: {
-        //     line: {
-        //       style: {
-        //         stroke: "#D9D9D9",
-        //       },
-        //     },
-        //   },
-        // });
 
         // 绘制散点图
         this.chart
           .interval()
           // .point()
-          // .path()
           .position("x*y")
           .color("person", (val) => this.colorsMap[val])
           // .size("population", [4, 25])
-          .size(50)
+          .size(60)
           .shape("triangle")
           .animate({
             update: {
@@ -180,12 +153,6 @@ export default {
           });
 
         // 绘制标注文本
-        this.chart.annotation().image({
-          // top: true,
-          start: ["min", "max"],
-          end: ["max", "min"],
-          src: "https://i.ibb.co/0rxGQMf/Floor-Plan-No-Medicine-Room5.jpg", //static/img/FloorPlanNoMedicineRoom5.jpg
-        });
         this.chart.annotation().text({
           position: ["5%", "10%"],
           content: time,
@@ -193,7 +160,7 @@ export default {
             fontSize: 30,
             fill: "#999",
             textAlign: "center",
-            fillOpacity: 0.3,
+            fillOpacity: 0.5,
           },
           top: false,
           animate: false,
@@ -201,14 +168,7 @@ export default {
         this.chart.render();
       } else if (this.theTime < 113233) {
         // console.log(123, this.data[time]);
-
         this.chart.annotation().clear(true);
-        // this.chart.annotation().image({
-        //   // top: true,
-        //   start: ["min", "max"],
-        //   end: ["max", "min"],
-        //   src: "https://i.ibb.co/rHVwv6Z/Floor-Plan-No-Medicine-Room5.jpg", //static/img/FloorPlanNoMedicineRoom5.jpg
-        // });
         this.chart.annotation().text({
           position: ["5%", "10%"],
           content: time,
@@ -216,7 +176,7 @@ export default {
             fontSize: 30,
             fill: "#999",
             textAlign: "center",
-            fillOpacity: 0.3,
+            fillOpacity: 0.5,
           },
           top: false,
           animate: false,
@@ -226,7 +186,6 @@ export default {
     },
     play() {
       this.theTime++;
-      // console.log(this.theTime)
       this.countUp();
     },
     switch() {
@@ -256,20 +215,10 @@ export default {
         // 2. 绘制
         draw(cfg, group) {
           const points = this.parsePoints(cfg.points); // 将0-1空间的坐标转换为画布坐标
-          // console.log(456, cfg.data.angle);
-          // cfg.data.angle = 0;
+
           let cosT = Math.cos((cfg.data.angle * Math.PI) / 360);
           let sinT = Math.sin((cfg.data.angle * Math.PI) / 360);
 
-          // let tanTheta1 = (tanTheta + 0.33) / (1 - 0.33 * tanTheta);
-          // let x1 = Math.sqrt(2775.25 / (1 + Math.pow(tanTheta1, 2)));
-          // let y1 = x1 * tanTheta1;
-
-          // let tanTheta2 = (tanTheta - 0.33) / (1 + 0.33 * tanTheta);
-          // let x2 = Math.sqrt(2775.25 / (1 + Math.pow(tanTheta2, 2)));
-          // let y2 = x2 * tanTheta1;
-          // console.log(999, points[1].x + x1, points[1].y + y1);
-          // console.log(points[1].x + x2, points[1].y + y2);
           var dx0 = points[0].x - points[1].x,
             dy0 = points[0].y - points[1].y,
             dx2 = points[2].x - points[1].x,
@@ -300,3 +249,12 @@ export default {
   },
 };
 </script>
+<style>
+.middle {
+  height: 0.8;
+  width: 0.8;
+  background: no-repeat center;
+  background-size: contain 10px auto;
+}
+</style>
+>

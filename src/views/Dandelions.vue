@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Experiment msg="Welcome to Your Vue.js App" />
+    <Experiment msg="Dandelions" />
   </div>
 </template>
 

@@ -73,7 +73,7 @@ export default {
       // let chart;
       // const year = this.years[this.count];
       const year = this.theYear;
-      console.log(1, typeof this.data[year]);
+      // console.log(1, typeof this.data[year]);
       if (!this.init) {
         this.init = true;
         this.chart = new Chart({
@@ -169,7 +169,7 @@ export default {
           .position("income*life")
           .color("continent", (val) => this.colorsMap[val])
           .size("population", [4, 25])
-          .shape("triangle")
+          .shape("circle")
           .animate({
             update: {
               duration: 200,
