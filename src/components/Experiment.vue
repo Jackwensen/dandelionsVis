@@ -18,6 +18,9 @@
       >
       </el-switch>
     </div>
+    <!-- <div>
+      <el-button icon="el-icon-video-play" type="text"></el-button>
+    </div> -->
   </div>
 </template>
 
@@ -39,9 +42,13 @@ export default {
       years: [],
       data: [],
       colorsMap: {
-        person1: "#f49d37",
+        person1: "#ffb380",
         person2: "#f03838",
         person3: "#35d1d1",
+        person4: "#b87acc",
+        person5: "#9999ff",
+        person6: "#99ffd6",
+        person7: "#ffff66",
       },
       interval: [],
       backgroundDiv: {
@@ -110,7 +117,15 @@ export default {
             type: "linear",
           },
           person: {
-            values: ["person1", "person2", "person3"],
+            values: [
+              "person1",
+              "person2",
+              "person3",
+              "person4",
+              "person5",
+              "person6",
+              "person7",
+            ],
           },
         });
 
