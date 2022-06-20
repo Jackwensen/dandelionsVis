@@ -1,12 +1,13 @@
 <template>
   <div>
     <div id="c1" :style="backgroundDiv" class="middle"></div>
-    <div>
+    <div style="margin: 0 auto; height: 50px; width: 1000px">
       <el-slider
         v-model="theTime"
-        :min="113203"
+        :min="113202"
         :max="113233"
         @change="this.countUp"
+        :format-tooltip="formatTooltip"
       ></el-slider>
     </div>
     <div>
@@ -18,9 +19,6 @@
       >
       </el-switch>
     </div>
-    <!-- <div>
-      <el-button icon="el-icon-video-play" type="text"></el-button>
-    </div> -->
   </div>
 </template>
 
@@ -79,19 +77,20 @@ export default {
           container: "c1",
           // autoFit: true,
           width: 1200,
-          height: 520,
+          height: 540,
+          // padding: [20, 20, 95, 80]
         });
         this.chart.data(this.data[time]);
         // 图表框架
         this.chart.scale({
           x: {
-            min: -5300,
-            max: 13700,
+            min: -5339, //-5300
+            max: 13800, //13700
             // tickInterval: 10,
             alias: "X",
           },
           y: {
-            max: 8150,
+            max: 8250,
             min: 0,
             alias: "Y",
           },
@@ -133,15 +132,16 @@ export default {
         this.chart.tooltip({
           // showMarkers: false,
           title: "person",
-          position: "left",
+          position: "right",
         });
 
         // 配置图例
         // this.chart.legend(false)
         this.chart.legend("CI", false);
         this.chart.legend("person", {
-          // flipPage: false,
-          position: "left-top",
+          flipPage: false,
+          offsetY: 5,
+          position: "bottom-left",
         });
 
         // 坐标轴配置
@@ -162,7 +162,7 @@ export default {
               easing: "easeLinear",
             },
           })
-          .tooltip("CI*session*phase")
+          .tooltip("CI*session*phase*angle")
           .style({
             stroke: "#000",
           });
@@ -170,7 +170,12 @@ export default {
         // 绘制标注文本
         this.chart.annotation().text({
           position: ["5%", "10%"],
-          content: time,
+          content:
+            time.toString().substring(0, 2) +
+            ":" +
+            time.toString().substring(2, 4) +
+            ":" +
+            time.toString().substring(4, 6),
           style: {
             fontSize: 30,
             fill: "#999",
@@ -186,7 +191,12 @@ export default {
         this.chart.annotation().clear(true);
         this.chart.annotation().text({
           position: ["5%", "10%"],
-          content: time,
+          content:
+            time.toString().substring(0, 2) +
+            ":" +
+            time.toString().substring(2, 4) +
+            ":" +
+            time.toString().substring(4, 6),
           style: {
             fontSize: 30,
             fill: "#999",
@@ -215,7 +225,7 @@ export default {
       registerShape("interval", "triangle", {
         // 1. 定义关键点
         getPoints(cfg) {
-          console.log(123, cfg);
+          // console.log(123, cfg);
 
           const x = cfg.x;
           const y = cfg.y;
@@ -231,15 +241,15 @@ export default {
         draw(cfg, group) {
           const points = this.parsePoints(cfg.points); // 将0-1空间的坐标转换为画布坐标
 
-          let cosT = Math.cos((cfg.data.angle * Math.PI) / 360);
-          let sinT = Math.sin((cfg.data.angle * Math.PI) / 360);
+          let cosT = Math.cos((-cfg.data.angle * Math.PI) / 180);
+          let sinT = Math.sin((-cfg.data.angle * Math.PI) / 180);
 
           var dx0 = points[0].x - points[1].x,
             dy0 = points[0].y - points[1].y,
             dx2 = points[2].x - points[1].x,
             dy2 = points[2].y - points[1].y;
-          console.log(dx0, dy0);
-          console.log(dx2, dy2);
+          // console.log(dx0, dy0);
+          // console.log(dx2, dy2);
           var x0 = dx0 * cosT - dy0 * sinT + points[1].x,
             y0 = dx0 * sinT + dy0 * cosT + points[1].y,
             x2 = dx2 * cosT - dy2 * sinT + points[1].x,
@@ -256,19 +266,30 @@ export default {
               ...cfg.defaultStyle,
             },
           });
-          console.log(polygon.attrs.path);
+          // console.log(polygon.attrs.path);
           return polygon;
         },
       });
+    },
+    formatTooltip(val) {
+      if (val) {
+        return (
+          val.toString().substring(0, 2) +
+          ":" +
+          val.toString().substring(2, 4) +
+          ":" +
+          val.toString().substring(4, 6)
+        );
+      }
     },
   },
 };
 </script>
 <style>
 .middle {
-  height: 0.8;
-  width: 0.8;
-  background: no-repeat center;
+  /* height: 550px;
+  width: 1300px; */
+  background: no-repeat top;
   background-size: contain 10px auto;
 }
 </style>
