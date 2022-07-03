@@ -6,13 +6,15 @@
         v-model="theTime"
         :min="113202"
         :max="113233"
-        @change="this.countUp"
+        range
+        @change="this.moveSlider"
         :format-tooltip="formatTooltip"
+        :marks="marks"
       ></el-slider>
     </div>
     <div>
       <el-switch
-        v-model="start"
+        v-model="startPlay"
         active-text="播放"
         inactive-text="暂停"
         @change="this.switch"
@@ -26,6 +28,7 @@
 import { Chart } from "@antv/g2";
 import { registerShape } from "@antv/g2";
 import location from "/static/json/loc.json";
+// import data123 from "/static/json/data123.json";
 
 export default {
   mounted() {
@@ -33,24 +36,45 @@ export default {
   },
   data() {
     return {
-      theTime: 113203,
+      theTime: [113206, 113230],
       init: false,
-      start: false,
+      leftSilder: 113206,
+      startPlay: false,
       chart: null,
       years: [],
       data: [],
-      colorsMap: {
-        person1: "#ffb380",
-        person2: "#f03838",
-        person3: "#35d1d1",
-        person4: "#b87acc",
-        person5: "#9999ff",
-        person6: "#99ffd6",
-        person7: "#ffff66",
+      colorsMap: [
+        "#ff0000",
+        "#ffbf00",
+        "#ffff00",
+        "#40ff00",
+        "#00ffff",
+        "#007fff",
+        "#7f00ff",
+      ],
+      colorsMap1: {
+        person1: "0:#ff0000 0.85:#ffffff",
+        person1old: "0:#ff9999 0.85:#ffffff",
+        person2: "0:#ffbf00 0.85:#ffffff",
+        person2old: "0:#ffe599 0.85:#ffffff",
+        person3: "0:#ffff00 0.85:#ffffff",
+        person3old: "0:#ffff99 0.85:#ffffff",
+        person4: "0:#40ff00 0.85:#ffffff",
+        person4old: "0:#b3ff99 0.85:#ffffff",
+        person5: "0:#00ffff 0.85:#ffffff",
+        person5old: "0:#99ffff 0.85:#ffffff",
+        person6: "0:#007fff 0.85:#ffffff",
+        person6old: "0:#99ccff 0.85:#ffffff",
+        person7: "0:#7f00ff 0.85:#ffffff",
+        person7old: "0:#cc99ff 0.85:#ffffff",
       },
       interval: [],
       backgroundDiv: {
         backgroundImage: "url(" + require("/static/img/1200+520.jpg") + ")",
+      },
+      marks: {
+        113202: "11:32:02",
+        113233: "11:32:33",
       },
     };
   },
@@ -59,26 +83,23 @@ export default {
       /**
        * 111
        */
-      // console.log(typeof location);
       // let loc = location.json();
       this.years = Object.keys(location);
-      this.data = location;
       this.register();
       this.countUp();
     },
     countUp() {
       // const year = this.years[this.count];
-      const time = this.theTime;
+      this.data = JSON.parse(JSON.stringify(location));
+      const time = this.theTime[0];
       if (!this.init) {
-        // console.log(456, this.data[time]);
-
         this.init = true;
         this.chart = new Chart({
           container: "c1",
           // autoFit: true,
           width: 1200,
-          height: 540,
-          // padding: [20, 20, 95, 80]
+          height: 600,
+          padding: [0, 0, 90],
         });
         this.chart.data(this.data[time]);
         // 图表框架
@@ -90,12 +111,15 @@ export default {
             alias: "X",
           },
           y: {
-            max: 8250,
+            max: 8250, //8150
             min: 0,
             alias: "Y",
           },
-          id: {
+          tracker: {
             key: true, // 自定义每条数据的 id
+          },
+          id: {
+            values: ["one", "two", "three", "four", "five", "six", "seven"],
           },
           CI: {
             type: "cat",
@@ -105,15 +129,6 @@ export default {
           },
           rotation: {
             nice: true,
-          },
-          interpolated: {
-            type: "linear",
-          },
-          phase: {
-            type: "linear",
-          },
-          quartiles: {
-            type: "linear",
           },
           person: {
             values: [
@@ -136,26 +151,72 @@ export default {
         });
 
         // 配置图例
-        // this.chart.legend(false)
-        this.chart.legend("CI", false);
-        this.chart.legend("person", {
+        // this.chart.legend(false);
+        this.chart.legend("id", {
           flipPage: false,
-          offsetY: 5,
+          offsetY: -45, //控制legend位置
           position: "bottom-left",
+          // background: {
+          //   style: {
+          //     fill: "#00cc33",
+          //   },
+          // },
+          marker: (name, index, item) => {
+            console.log(item);
+            return {
+              symbol: "triangle",
+              style: {
+                fill: this.colorsMap[index],
+                stroke: "#363636",
+                lineWidth: 0.1,
+                r: 9,
+              },
+            };
+          },
         });
 
-        // 坐标轴配置
+        /**
+         * 复写 图例筛选 交互。1、点击图例名称 进行 unchecked 状态的切换 2、点击图例 marker，进行 checked 状态的切换（进行聚焦）3、双击 重置状态
+         *
+         */
+        this.chart.interaction("element-highlight");
+        this.chart.interaction("legend-filter", {
+          start: [
+            {
+              trigger: "legend-item-name:click",
+              action: ["list-unchecked:toggle", "data-filter:filter"],
+            },
+            {
+              trigger: "legend-item-marker:click",
+              action: ["list-checked:checked", "data-filter:filter"],
+            },
+          ],
+          end: [
+            {
+              trigger: "legend-item-marker:dblclick",
+              action: ["list-checked:reset", "data-filter:filter"],
+            },
+          ],
+        });
+
+        /**
+         * 坐标轴配置
+         */
         this.chart.axis(false);
 
-        // 绘制散点图
+        // 绘制
         this.chart
           .interval()
           // .point()
           .position("x*y")
-          .color("person", (val) => this.colorsMap[val])
-          // .size("population", [4, 25])
+          .color("id*person*angle", (val1, val2, val3) => {
+            var radius = Math.round(val3 ? val3 : 0);
+            var angle = 360 - radius > 360 ? -radius : 360 - radius;
+            return (`l(${angle}) ` + this.colorsMap1[(val1, val2)]).toString();
+          })
           .size(60)
           .shape("triangle")
+          // .animate(false)
           .animate({
             update: {
               duration: 200,
@@ -185,8 +246,12 @@ export default {
           top: false,
           animate: false,
         });
+        // 绘制
         this.chart.render();
-      } else if (this.theTime < 113233) {
+      } else if (this.theTime[0] < 113233) {
+        /**
+         * annotation and animate
+         */
         // console.log(123, this.data[time]);
         this.chart.annotation().clear(true);
         this.chart.annotation().text({
@@ -206,16 +271,53 @@ export default {
           top: false,
           animate: false,
         });
-        this.chart.changeData(this.data[time]);
+        this.chart.animate(false);
+        /**
+         * append
+         */
+        console.log("start:", this.leftSilder);
+        console.log("end", time);
+        let finalData = Object.values(this.data[Number(this.leftSilder)]);
+        if (time !== this.leftSilder) {
+          // append the previous data
+          for (let i = this.leftSilder; i < time; i++) {
+            var appendData = Object.values(this.data[Number(i)]);
+            finalData = finalData.concat(appendData);
+          }
+          /**
+           * change the color of previous data
+           */
+          for (let j = 0; j < finalData.length; j++) {
+            var personNum = finalData[j].person + "old";
+            if (!finalData[j].person.includes("old"))
+              finalData[j].person = personNum;
+          }
+          /**
+           * concat current data
+           */
+          finalData = finalData.concat(Object.values(this.data[Number(time)]));
+        }
+        this.chart.changeData(finalData);
       }
     },
-    play() {
-      this.theTime++;
+    moveSlider() {
+      this.leftSilder = this.theTime[0];
       this.countUp();
+    },
+    play() {
+      if (this.theTime[0] < this.theTime[1]) {
+        this.theTime[0]++;
+        var num1 = this.theTime[0].toString();
+        var num2 = this.theTime[1].toString();
+        this.theTime = [num1, num2];
+
+        // console.log(this.theTime);
+        this.countUp();
+      }
     },
     switch() {
       // console.log(this.theTime, this.start);
-      if (this.start) {
+      if (this.startPlay) {
         this.interval = setInterval(this.play, 300);
       } else {
         clearInterval(this.interval);

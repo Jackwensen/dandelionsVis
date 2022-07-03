@@ -47,6 +47,14 @@
         @node-click="handleNodeClick"
       ></el-tree>
     </el-aside>
+    <div>
+      <i class="el-icon-video-play"></i>
+      <el-button type="text" icon="el-icon-video-play">播放</el-button>
+    </div>
+    <div>
+      <i class="el-icon-video-pause"></i>
+      <el-button type="text" icon="el-icon-video-pause">播放</el-button>
+    </div>
   </el-container>
 </template>
 
