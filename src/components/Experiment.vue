@@ -1,10 +1,30 @@
 <template>
   <div>
     <div id="c1" :style="backgroundDiv" class="middle"></div>
+    <div id="timeline-container"></div>
     <div style="margin: 0 auto; height: 50px; width: 1000px">
+      <b-progress height="30px" :max="30">
+        <b-progress-bar
+          :value="leftSilder - 113203"
+          variant="secondary"
+        ></b-progress-bar>
+        <b-progress-bar
+          :value="theTime[0] - leftSilder"
+          variant="info"
+          animated
+        ></b-progress-bar>
+        <b-progress-bar
+          :value="theTime[1] - theTime[0]"
+          variant="warning"
+        ></b-progress-bar>
+        <b-progress-bar
+          :value="30 + 113203 - theTime[1]"
+          variant="secondary"
+        ></b-progress-bar>
+      </b-progress>
       <el-slider
         v-model="theTime"
-        :min="113202"
+        :min="113203"
         :max="113233"
         range
         @change="this.moveSlider"
@@ -13,13 +33,24 @@
       ></el-slider>
     </div>
     <div>
-      <el-switch
-        v-model="startPlay"
-        active-text="播放"
-        inactive-text="暂停"
-        @change="this.switch"
-      >
-      </el-switch>
+      <button type="button">
+        <i class="el-icon-d-arrow-left" @click="oneStep('back')"></i>
+      </button>
+      <button type="button">
+        <i
+          class="el-icon-video-play"
+          v-if="!startPlay"
+          @click="this.switch"
+        ></i>
+        <i
+          class="el-icon-video-pause"
+          v-if="startPlay"
+          @click="this.switch"
+        ></i>
+      </button>
+      <button type="button">
+        <i class="el-icon-d-arrow-right" @click="oneStep('front')"></i>
+      </button>
     </div>
   </div>
 </template>
@@ -37,6 +68,7 @@ export default {
   data() {
     return {
       theTime: [113206, 113230],
+      value: 45,
       init: false,
       leftSilder: 113206,
       startPlay: false,
@@ -73,7 +105,7 @@ export default {
         backgroundImage: "url(" + require("/static/img/1200+520.jpg") + ")",
       },
       marks: {
-        113202: "11:32:02",
+        113203: "11:32:03",
         113233: "11:32:33",
       },
     };
@@ -162,7 +194,7 @@ export default {
           //   },
           // },
           marker: (name, index, item) => {
-            console.log(item);
+            console.log(typeof item);
             return {
               symbol: "triangle",
               style: {
@@ -252,7 +284,6 @@ export default {
         /**
          * annotation and animate
          */
-        // console.log(123, this.data[time]);
         this.chart.annotation().clear(true);
         this.chart.annotation().text({
           position: ["5%", "10%"],
@@ -275,8 +306,8 @@ export default {
         /**
          * append
          */
-        console.log("start:", this.leftSilder);
-        console.log("end", time);
+        // console.log("start:", this.leftSilder);
+        // console.log("end", time);
         let finalData = Object.values(this.data[Number(this.leftSilder)]);
         if (time !== this.leftSilder) {
           // append the previous data
@@ -301,6 +332,7 @@ export default {
       }
     },
     moveSlider() {
+      console.log(this.theTime);
       this.leftSilder = this.theTime[0];
       this.countUp();
     },
@@ -310,13 +342,26 @@ export default {
         var num1 = this.theTime[0].toString();
         var num2 = this.theTime[1].toString();
         this.theTime = [num1, num2];
-
-        // console.log(this.theTime);
         this.countUp();
       }
     },
+    oneStep(type) {
+      if (type === "back") {
+        this.theTime[0]--;
+        var num1 = this.theTime[0].toString();
+        var num2 = this.theTime[1].toString();
+        this.theTime = [num1, num2];
+        this.leftSilder = this.theTime[0];
+      } else {
+        this.theTime[0]++;
+        var num3 = this.theTime[0].toString();
+        var num4 = this.theTime[1].toString();
+        this.theTime = [num3, num4];
+      }
+      this.countUp();
+    },
     switch() {
-      // console.log(this.theTime, this.start);
+      this.startPlay = !this.startPlay;
       if (this.startPlay) {
         this.interval = setInterval(this.play, 300);
       } else {
@@ -393,6 +438,30 @@ export default {
   width: 1300px; */
   background: no-repeat top;
   background-size: contain 10px auto;
+}
+button {
+  -webkit-text-size-adjust: 100%;
+  vertical-align: baseline;
+  /* font-weight: 300; */
+  display: inline-block;
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  box-sizing: border-box;
+  transition-property: all;
+  transition-duration: 0.3s;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border-radius: 100%;
+  padding: 0 !important;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  font-size: 42px;
+  height: 60px;
+  line-height: 60px;
+  /* margin: 5px; */
+  width: 60px;
+  animation-name: glowing-action;
 }
 </style>
 >

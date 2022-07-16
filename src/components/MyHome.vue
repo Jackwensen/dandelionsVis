@@ -48,12 +48,20 @@
       ></el-tree>
     </el-aside>
     <div>
-      <i class="el-icon-video-play"></i>
-      <el-button type="text" icon="el-icon-video-play">播放</el-button>
-    </div>
-    <div>
-      <i class="el-icon-video-pause"></i>
-      <el-button type="text" icon="el-icon-video-pause">播放</el-button>
+      <i class="el-icon-video-play" v-if="button" @click="change"></i>
+      <el-button
+        type="text"
+        icon="el-icon-video-play"
+        v-if="button"
+        @click="change"
+      ></el-button>
+      <i class="el-icon-video-pause" v-if="!button" @click="change"></i>
+      <el-button
+        type="text"
+        icon="el-icon-video-pause"
+        v-if="!button"
+        @click="change"
+      ></el-button>
     </div>
   </el-container>
 </template>
@@ -62,6 +70,7 @@
 export default {
   data() {
     return {
+      button: true,
       data: [
         {
           label: "一级 1",
@@ -129,6 +138,9 @@ export default {
     handleNodeClick(data) {
       console.log(data);
     },
+    change() {
+      this.button = !this.button;
+    },
   },
 };
 </script>
@@ -150,7 +162,7 @@ export default {
   text-rendering: optimizeLegibility;
   font-family: proximanova, Verdana, Helvetica, sans;
   word-break: break-word;
-  font-size: 2em !important;
+  font-size: 1em !important;
   line-height: 1.1;
   font-style: normal;
   text-transform: none;
