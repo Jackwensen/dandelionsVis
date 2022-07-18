@@ -2,7 +2,7 @@
   <div>
     <div id="c1" :style="backgroundDiv" class="middle"></div>
     <div id="timeline-container"></div>
-    <div style="margin: 0 auto; height: 50px; width: 980px; padding-left: 15px">
+    <div style="margin: 0 auto; height: 50px; width: 985px; padding-left: 15px">
       <b-progress height="30px" :max="31">
         <b-progress-bar
           :value="leftSilder - 113202"
@@ -72,14 +72,13 @@ export default {
   data() {
     return {
       theTime: [113206, 113230],
-      value: 45,
       init: false,
       leftSilder: 113206,
       startPlay: false,
-      timelineMount: false,
-      timeAreaLine: null,
       chart: null,
       brush: null,
+      timeline: null,
+      x: null,
       years: [],
       data: [],
       dataForTimeline: [],
@@ -127,10 +126,10 @@ export default {
       this.years = Object.keys(location);
       //register dandelion shape
       this.register();
-      this.countUp();
+      this.makeDandelion();
       this.timeLine();
     },
-    countUp() {
+    makeDandelion() {
       // const year = this.years[this.count];
       this.data = JSON.parse(JSON.stringify(location));
       const time = this.theTime[0];
@@ -344,10 +343,9 @@ export default {
     moveSlider() {
       console.log(this.theTime);
       this.leftSilder = this.theTime[0];
-      this.brush.clear().extent(this.theTime);
-      console.log(this.brush.extent());
-      // this.makeTimeline();
-      this.countUp();
+
+      this.renderBrush();
+      this.makeDandelion();
     },
     play() {
       if (this.theTime[0] < this.theTime[1]) {
@@ -355,7 +353,7 @@ export default {
         var num1 = this.theTime[0].toString();
         var num2 = this.theTime[1].toString();
         this.theTime = [num1, num2];
-        this.countUp();
+        this.makeDandelion();
       }
     },
     oneStep(type) {
@@ -365,13 +363,14 @@ export default {
         var num2 = this.theTime[1].toString();
         this.theTime = [num1, num2];
         this.leftSilder = this.theTime[0];
+        this.renderBrush();
       } else {
         this.theTime[0]++;
         var num3 = this.theTime[0].toString();
         var num4 = this.theTime[1].toString();
         this.theTime = [num3, num4];
       }
-      this.countUp();
+      this.makeDandelion();
     },
     switch() {
       this.startPlay = !this.startPlay;
@@ -456,12 +455,11 @@ export default {
         return a.TIME - b.TIME;
       });
       this.makeTimeline();
-      this.timelineMount = true;
       // Calls updateMapPoints()
     },
     // Creates the event timeline and sets up callbacks for brush changes
     makeTimeline() {
-      var margin = { top: 10, right: 10, bottom: 20, left: 25 },
+      var margin = { top: 10, right: 10, bottom: 20, left: 20 },
         width = 1000 - margin.left - margin.right,
         height = 80 - margin.top - margin.bottom;
 
@@ -470,117 +468,127 @@ export default {
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom);
-      console.log(timelineSvg);
+
       var timeline = timelineSvg
         .append("g")
         .attr("class", "timeline")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-      // console.log()
-      this.areaLine = timeline;
-      var x = d3.scale
-        .linear()
-        .domain(
-          d3.extent(
-            this.dataForTimeline.map(function (d) {
-              return d.TIME;
-            })
+      /**
+       * config timeline
+       * x, y, xAxis, yAxis
+       * area, path, text
+       */
+      {
+        var x = d3
+          .scaleLinear()
+          .domain(
+            d3.extent(
+              this.dataForTimeline.map(function (d) {
+                return d.TIME;
+              })
+            )
           )
-        )
-        .range([0, width]);
-
-      var y = d3.scale
-        .linear()
-        .domain(
-          d3.extent(
-            this.dataForTimeline.map(function (d) {
-              return d.TOT;
-            })
+          .range([0, width]);
+        this.x = x;
+        var y = d3
+          .scaleLinear()
+          .domain(
+            d3.extent(
+              this.dataForTimeline.map(function (d) {
+                return d.TOT;
+              })
+            )
           )
-        )
-        .range([height, 0]);
+          .range([height, 0]);
 
-      var xAxis = d3.svg
-        .axis()
-        .scale(x)
-        .orient("bottom")
-        .ticks(31)
-        .tickFormat((d) => {
-          return d % 100;
-        });
+        var xAxis = d3
+          .axisBottom()
+          .scale(x)
+          .ticks(31)
+          .tickFormat((d) => {
+            return d % 100;
+          });
 
-      var yAxis = d3.svg.axis().scale(y).orient("left").ticks(3);
-      // the area of timeline
-      var area = d3.svg
-        .area()
-        .interpolate("linear")
-        .x(function (d) {
-          return x(d.TIME);
-        })
-        .y0(height)
-        .y1(function (d) {
-          return y(d.TOT);
-        });
+        var yAxis = d3.axisLeft().scale(y).ticks(3);
+        // the area of timeline
+        var area = d3
+          .area()
+          .curve(d3.curveLinear)
+          .x(function (d) {
+            return x(d.TIME);
+          })
+          .y0(height)
+          .y1(function (d) {
+            return y(d.TOT);
+          });
 
-      timeline
-        .append("path")
-        .datum(this.dataForTimeline)
-        .attr("class", "area")
-        .attr("d", area);
+        timeline
+          .append("path")
+          .datum(this.dataForTimeline)
+          .attr("class", "area")
+          .attr("d", area);
 
-      timeline
-        .append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
+        timeline
+          .append("g")
+          .attr("class", "x axis")
+          .attr("transform", "translate(0," + height + ")")
+          .call(xAxis);
 
-      timeline.append("g").attr("class", "y axis").call(yAxis);
+        timeline.append("g").attr("class", "y axis").call(yAxis);
 
-      timeline
-        .append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("dy", "1em")
-        .style("text-anchor", "end")
-        .text("Random data");
+        timeline
+          .append("text")
+          .attr("transform", "rotate(-90)")
+          .attr("dy", "1em")
+          .style("text-anchor", "end")
+          .text("#Random");
+      }
       // Add brush to timeline, hook up to callback
-      this.brush = d3.svg
-        .brush()
-        .x(x)
-        .on("brushend", () => {
-          this.brushCallback(this.brush);
-        })
-        .extent(this.theTime);
+      var brush = d3
+        .brushX()
+        .extent([
+          [0, 0],
+          [width, 50],
+        ])
+        .on("end", this.brushCallback);
+      this.brush = brush;
 
-      timeline
-        .append("g")
-        .attr("class", "x brush")
-        .call(this.brush)
-        .selectAll("rect")
-        .attr("y", -6)
-        .attr("height", height + 7);
-      this.brush.event(timeline.select("g.x.brush")); // dispatches a single brush event
-      this.timeAreaLine = timeline;
+      timeline.append("g").transition();
+
+      this.timeline = timeline;
+      this.renderBrush();
     },
     // Called whenever the timeline brush range (extent) is updated
     // Filters the map data to those points that fall within the selected timeline range
-    brushCallback(brush) {
-      console.log(this.timeAreaLine);
-      if (brush.empty()) {
-        updateMapPoints([]);
-      } else {
-        let newDateRange = brush.extent().map((d) => {
-          return Math.floor(d);
-        });
-        console.log("brushCallback", newDateRange);
-        this.theTime = newDateRange;
-        this.leftSilder = this.theTime[0];
-        updateMapPoints(newDateRange);
-      }
-      this.countUp();
+    brushCallback(event) {
+      console.log("brushCallback");
 
-      // Updates the points displayed on the map, to those in the passed data array
-      function updateMapPoints(data) {
-        console.log("updateMapPoints", typeof data);
+      const selection = event.selection;
+      // console.log(event.sourceEvent);
+      if (!selection) {
+        const [[cx]] = d3.pointers(event);
+        console.log(cx);
+        var [x0, x1] = [cx - 190, cx - 70].map(this.x.invert);
+        var newDateRange1 = [Math.round(x0), Math.round(x1)];
+        this.theTime = newDateRange1;
+        this.leftSilder = this.theTime[0];
+
+        this.renderBrush();
+        this.makeDandelion();
+      } else if (event.sourceEvent) {
+        var [x2, x3] = selection.map((d) => Math.round(this.x.invert(d)));
+        var newDateRange2 = [x2, x3];
+        // console.log("else", newDateRange2);
+        this.theTime = newDateRange2;
+        this.leftSilder = this.theTime[0];
+        this.renderBrush();
+        this.makeDandelion();
       }
+    },
+    renderBrush() {
+      this.timeline
+        .call(this.brush)
+        .call(this.brush.move, this.theTime.map(this.x));
     },
   },
 };
