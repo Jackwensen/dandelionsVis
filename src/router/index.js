@@ -12,13 +12,22 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/Dandelions.vue"),
   },
   {
+    path: "/timeline",
+    name: "Timeline",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/WithTimeline.vue"),
+  },
+  {
     path: "/dandelions",
     name: "Dandelions",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/MapTimeline.vue"),
+      import(/* webpackChunkName: "about" */ "../views/Introduction.vue"),
   },
 ];
 
