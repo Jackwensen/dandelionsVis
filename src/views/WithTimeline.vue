@@ -79,6 +79,7 @@ export default {
       brush: null,
       timeline: null,
       x: null,
+      brushHandle: null,
       years: [],
       data: [],
       dataForTimeline: [],
@@ -543,6 +544,35 @@ export default {
           .style("text-anchor", "end")
           .text("#Random");
       }
+      // var arc = d3
+      //   .arc()
+      //   .innerRadius(0)
+      //   .outerRadius(25)
+      //   .startAngle(0)
+      //   .endAngle((d, i) => (i ? Math.PI : -Math.PI));
+
+      // var brushHandle = (g, s) =>
+      //   g
+      //     .selectAll(".handle--custom")
+      //     .data([{ type: "w" }, { type: "e" }])
+      //     .join((enter) =>
+      //       enter
+      //         .append("path")
+      //         .attr("class", "handle--custom")
+      //         .attr("fill", "#666")
+      //         .attr("fill-opacity", 0.8)
+      //         .attr("stroke", "#000")
+      //         .attr("stroke-width", 1.5)
+      //         .attr("cursor", "ew-resize")
+      //         .attr("d", arc)
+      //     )
+      //     .attr("display", s === null ? "none" : null)
+      //     .attr(
+      //       "transform",
+      //       s === null ? null : (d, i) => `translate(${s[i]},${25})`
+      //     );
+
+      // this.brushHandle = brushHandle;
       // Add brush to timeline, hook up to callback
       var brush = d3
         .brushX()
@@ -566,10 +596,14 @@ export default {
       const selection = event.selection;
       // console.log(event.sourceEvent);
       if (!selection) {
-        const [[cx]] = d3.pointers(event);
-        console.log(cx);
-        var [x0, x1] = [cx - 190, cx - 70].map(this.x.invert);
-        var newDateRange1 = [Math.round(x0), Math.round(x1)];
+        // const dx = this.x(1) - this.x(0);
+        // const [[cx]] = d3.pointers(event);
+        // var [x0, x1] = [cx - dx / 2, cx + dx / 2].map(this.x.invert);
+        // var [x0, x1] = this.x.range();
+
+        var [X0, X1] = [0, 100].map(this.x.invert);
+        console.log(X0, X1);
+        var newDateRange1 = [Math.round(X0), Math.round(X1)];
         this.theTime = newDateRange1;
         this.leftSilder = this.theTime[0];
 
@@ -578,12 +612,14 @@ export default {
       } else if (event.sourceEvent) {
         var [x2, x3] = selection.map((d) => Math.round(this.x.invert(d)));
         var newDateRange2 = [x2, x3];
+        console.log(selection);
         // console.log("else", newDateRange2);
         this.theTime = newDateRange2;
         this.leftSilder = this.theTime[0];
         this.renderBrush();
         this.makeDandelion();
       }
+      // this.timeline.call(this.brushHandle, selection);
     },
     renderBrush() {
       this.timeline
